@@ -100,7 +100,7 @@ class PurchaseController extends Controller
         foreach($products as $product){
 
             $productFormat = ProductFormat::find($product["format"]["id"]);
-            $productFormat->amount = $productFormat->amount - $product["amount"];
+            $productFormat->stock = $productFormat->stock - $product["amount"];
             $productFormat->update();
 
         }
