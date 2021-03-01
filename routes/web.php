@@ -8,11 +8,13 @@ use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\SaleController;
+use App\Http\Controllers\Admin\AdminMailController;
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ClientCategoryController;
 use App\Http\Controllers\SearchController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +86,13 @@ Route::get("/admin/sales/excel", [SaleController::class, "excelExport"])->middle
 Route::get("/admin/sales/csv", [SaleController::class, "csvExport"])->middleware("auth");
 Route::post("/admin/sales/approve", [SaleController::class, "approve"])->middleware("auth");
 Route::post("/admin/sales/reject", [SaleController::class, "reject"])->middleware("auth");
+
+Route::get("admin/admin-email/index", [AdminMailController::class, "index"])->middleware("auth");
+Route::post("admin/admin-email/store", [AdminMailController::class, "store"])->middleware("auth");
+Route::get("admin/admin-email/fetch", [AdminMailController::class, "fetch"])->middleware("auth");
+Route::post("admin/admin-email/update", [AdminMailController::class, "update"])->middleware("auth");
+Route::post("admin/admin-email/delete", [AdminMailController::class, "delete"])->middleware("auth");
+
 
 Route::post("/upload/picture", [ImageController::class, "upload"]);
 

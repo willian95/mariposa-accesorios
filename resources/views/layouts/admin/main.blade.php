@@ -250,6 +250,13 @@ License: You must have a valid license purchased only from themeforest(the above
 										<span class="menu-text">Ventas</span>
 									</a>
 								</li>
+
+								<li class="menu-item" aria-haspopup="true">
+									<a href="{{ url('/admin/admin-email/index') }}" class="menu-link">
+										<i class="menu-icon flaticon2-arrow-1"></i>
+										<span class="menu-text">Admin mail</span>
+									</a>
+								</li>
 								
 							</ul>
 							<!--end::Menu Nav-->

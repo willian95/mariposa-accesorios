@@ -7,6 +7,7 @@ use App\Models\Purchase;
 use App\Models\ProductPurchase;
 use App\Models\ProductFormat;
 use App\Models\DolarToday;
+use App\Models\AdminMail;
 
 class PurchaseController extends Controller
 {
@@ -32,6 +33,11 @@ class PurchaseController extends Controller
             $this->storeProductPurchase($request->products, $purchase->id);
             $this->deductFromStock($request->products);
             $this->sendEmail($purchase->id);
+            foreach(AdminMail::all() as $mail){
+
+                $this->sendAdminEmail($purchase->id, $mail);
+
+            }
 
             return response()->json(["success" => true, "msg" => "Compra realizada, un administrador se contactará con usted para la confirmación del pago"]);
 
@@ -87,6 +93,33 @@ class PurchaseController extends Controller
         $data = ["purchase" => $purchase, "total" => $total, "dolarToday" => $dolarToday, "products" => $products];
 
         \Mail::send("emails.purchase", $data, function($message) use ($to_name, $to_email) {
+    
+            $message->to($to_email, $to_name)->subject("¡Compra realizada!");
+            $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
+
+        });
+
+    }
+
+    function sendAdminEmail($purchaseId, $email){
+
+        $purchase = Purchase::find($purchaseId);
+        $products = ProductPurchase::where("purchase_id", $purchaseId)->with("productFormat")->get();
+        $dolarToday = DolarToday::first()->price;
+        $total = 0;
+        
+        foreach($products as $product){
+
+            $total = $total + ($product->price * $product->amount);
+
+        }
+
+        $to_name = "Admin";
+        $to_email = $email;
+
+        $data = ["purchase" => $purchase, "total" => $total, "dolarToday" => $dolarToday, "products" => $products];
+
+        \Mail::send("emails.adminPurchaseNotification", $data, function($message) use ($to_name, $to_email) {
     
             $message->to($to_email, $to_name)->subject("¡Compra realizada!");
             $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
