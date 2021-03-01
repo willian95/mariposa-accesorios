@@ -29,13 +29,8 @@
                             <td class="pt-4">
                                 <p>@{{ showPrice(product.format.price) }}</p>
                             </td>
-                            <td class="pt-2">
-                                <div class="add_to_cart_wrapper" style="width: 60px;">
-                                    <div class="quantity">
-                                        @{{ product.amount }}
-                                    </div>
-                        
-                                </div>
+                            <td class="pt-4">
+                                @{{ product.amount }}
                             </td>
                             <td class="pt-4">
                                 <p>Bs. @{{ showPrice(product.format.price * product.amount) }}</p>
