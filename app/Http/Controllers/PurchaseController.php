@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
 use App\Models\ProductPurchase;
+use App\Models\DolarToday;
 use Event;
 use App\Events\SendPurchaseMail;
 
@@ -30,7 +31,8 @@ class PurchaseController extends Controller
             $purchase->save();
 
             $this->storeProductPurchase($request->products, $purchase->id);
-            Event::dispatch(new SendPurchaseMail($purchase->id));
+            $this->sendEmail($purchase->id);
+            //Event::dispatch(new SendPurchaseMail($purchase->id));
 
             return response()->json(["success" => true, "msg" => "Compra realizada, un administrador se contactará con usted para la confirmación del pago"]);
 
@@ -64,6 +66,33 @@ class PurchaseController extends Controller
             $productPurchase->save();
 
         }
+
+    }
+
+    function sendEmail($purchaseId){
+
+        $purchase = Purchase::find($purchaseId);
+        $products = ProductPurchase::where("purchase_id", $purchaseId)->with("productFormat")->get();
+        $dolarToday = DolarToday::first()->price;
+        $total = 0;
+        
+        foreach($products as $product){
+
+            $total = $total + ($product->price * $product->amount);
+
+        }
+
+        $to_name = $purchase->buyer_name;
+        $to_email = $purchase->buyer_email;
+
+        $data = ["purchase" => $purchase, "total" => $total, "dolarToday" => $dolarToday, "products" => $products];
+
+        \Mail::send("emails.purchase", $data, function($message) use ($to_name, $to_email) {
+    
+            $message->to($to_email, $to_name)->subject("¡Compra realizada!");
+            $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
+
+        });
 
     }
 
