@@ -181,13 +181,6 @@
                                 <p>@{{ shopping.bank_reference }}</p>
                             </div>
 
-                            <div class="col-md-6">
-                                <label><strong>Tracking</strong></label>
-                                <p>
-                                    @{{ shopping.tracking }}
-                                </p>
-                            </div>
-
                             
                             <div class="col-md-12">
                                 <h3 class="text-center">Productos</h3>
