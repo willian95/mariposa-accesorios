@@ -142,8 +142,8 @@ td .es-button-border-2:hover {
                         <tr style="border: 1px solid black; border-collapse:collapse">
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $loop->index + 1 }}</td>
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center"><img src="{{ $product['productFormat']['product']['image'] }}" style="width: 60px;"></td>
-                            <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["productFormat"]["prouct"]["name"] }} {{ $product["productFormat"]["color"]["name"] }} }} </td>
-                            <td>1</td>
+                            <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["productFormat"]["prouct"]["name"] }} {{ $product["productFormat"]["color"]["name"] }} </td>
+                            <td>{{  $product["amount"] }}</td>
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center">USD {{ number_format($product["price"], 0, ",", ".") }} / Bs. {{ number_format($product["price"] * $dolarToday, 0, ",", ".") }}</td>
                         </tr>
                       @endforeach
