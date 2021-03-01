@@ -144,6 +144,10 @@
 
                         cart = [{"product_format_id": this.selectedColor, "amount": this.amount}]
                         window.localStorage.setItem("mariposa_cart", JSON.stringify(cart))
+                        swal({
+                            text:"Producto añadido al carrito",
+                            icon:"success"
+                        })
                     }else{
 
                         var exists = false
