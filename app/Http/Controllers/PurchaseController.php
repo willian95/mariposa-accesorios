@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
 use App\Models\ProductPurchase;
+use App\Models\ProductFormat;
 use App\Models\DolarToday;
-use Event;
-use App\Events\SendPurchaseMail;
 
 class PurchaseController extends Controller
 {
@@ -31,8 +30,8 @@ class PurchaseController extends Controller
             $purchase->save();
 
             $this->storeProductPurchase($request->products, $purchase->id);
-            //$this->sendEmail($purchase->id);
-            Event::dispatch(new SendPurchaseMail($purchase->id));
+            $this->deductFromStock($request->products);
+            $this->sendEmail($purchase->id);
 
             return response()->json(["success" => true, "msg" => "Compra realizada, un administrador se contactará con usted para la confirmación del pago"]);
 
@@ -93,6 +92,18 @@ class PurchaseController extends Controller
             $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
 
         });
+
+    }
+
+    function deductFromStock($products){
+
+        foreach($products as $product){
+
+            $productFormat = ProductFormat::find($product["format"]["id"]);
+            $productFormat->amount = $productFormat->amount - $product["amount"];
+            $productFormat->update();
+
+        }
 
     }
 
