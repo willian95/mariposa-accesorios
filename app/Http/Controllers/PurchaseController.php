@@ -14,7 +14,7 @@ class PurchaseController extends Controller
     
     function store(Request $request){
 
-        try{
+
 
             $total = $this->getTotal($request->products);
 
@@ -41,9 +41,7 @@ class PurchaseController extends Controller
 
             return response()->json(["success" => true, "msg" => "Compra realizada, un administrador se contactará con usted para la confirmación del pago"]);
 
-        }catch(\Exception $e){
-            return response()->json(["success" => false, "msg" => "Ocurrió un problema", "err" => $e->getMessage(), "ln" => $e->getLine()]);
-        }
+        
 
     }
 
