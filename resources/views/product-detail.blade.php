@@ -34,7 +34,7 @@
             
             <h4 class="text-dark mt-4" style="font-weight: bold;">{{ $product->name }}</h4>
 
-            <h4 class="text-dark mt-4" style="font-weight: bold;">USD @{{ number_format(dolarPrice, 0, ",", ".") }}</h4>
+            <h4 class="text-dark mt-4" style="font-weight: bold;">$ @{{ number_format(dolarPrice, 0, ",", ".") }}</h4>
             <h4 class="text-dark mt-4" style="font-weight: bold;">Bs. @{{ number_format(price, 0, ",", ".") }}</h4>
 
             {!! $product->description !!}
