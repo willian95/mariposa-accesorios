@@ -381,6 +381,7 @@
                                 icon: "success"
                             }).then((action) => {
 
+                                window.localStorage.removeItem("mariposa_cart")
                                 window.location.href="{{ url('/') }}"
 
                             })

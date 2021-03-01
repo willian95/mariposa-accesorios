@@ -14,13 +14,22 @@ class CartController extends Controller
         foreach($request->rawProducts as $rawproduct){
 
             $productFormat = ProductFormat::where("id", $rawproduct["product_format_id"])->with("product")->first();
-            $products[] = [
 
-                "product" => $productFormat->product,
-                "format" => $productFormat,
-                "amount" => $rawproduct["amount"]
+            if($rawproduct["amount"] > $productFormat->stock){
+                $rawproduct["amount"] = $productFormat->stock;
+            }
 
-            ];
+            if($productFormat->stock > 0){
+                $products[] = [
+
+                    "product" => $productFormat->product,
+                    "format" => $productFormat,
+                    "amount" => $rawproduct["amount"]
+    
+                ];
+            }
+
+            
 
         }
 

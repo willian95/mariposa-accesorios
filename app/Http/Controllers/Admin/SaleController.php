@@ -116,7 +116,7 @@ class SaleController extends Controller
             $purchase->status = "rejected";
             $purchase->update();
 
-            $this->sendEmail($purchase->id, "Compra rechazada", "lamentamos comunicarte que tu compra fue rechazada. Para más información comunicate ocn nosotros");
+            $this->sendEmail($purchase->id, "Compra rechazada", "lamentamos comunicarte que tu compra fue rechazada. Para más información comunicate con nosotros");
 
             return response()->json(["success" => true, "msg" => "Venta actualizada"]);
 

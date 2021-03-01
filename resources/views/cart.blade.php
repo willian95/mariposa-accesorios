@@ -15,11 +15,12 @@
                                 <th style="width: 150px;">Precio</th>
                                 <th style="width: 150px;">Cantidad</th>
                                 <th style="width: 150px;">Total</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            <tr v-for="product in products">
+                            <tr v-for="(product, index) in products">
                                 <td>
                                     <img :src="product.product.image" alt="" style="height: 100px;">
                                 </td>
@@ -40,6 +41,11 @@
                                 <td class="pt-4">
                                     <p>Bs. @{{ showPrice(product.format.price * product.amount) }}</p>
                                 </td>
+                                <td class="pt-4">
+                                    <button class="btn btn-secondary" @click="remove(product.format.id)">
+                                        X
+                                    </button>
+                                </td>
                             </tr>
 
                         </tbody>
@@ -52,7 +58,11 @@
 
                 <h4><span class="text-dark">Total:</span> Bs. @{{ showPrice(total) }}</h4>
 
-                <a class="btn btn-dark" style="border-radius: 0px;" href="{{ url('/checkout') }}">
+                <a v-if="totla == 0" class="btn btn-dark" style="border-radius: 0px;" href="{{ url('/checkout') }}">
+                    Pagar
+                </a>
+
+                <a v-else class="btn btn-dark" style="border-radius: 0px;" href="#">
                     Pagar
                 </a>
             </div>
@@ -145,7 +155,22 @@
 
                     window.localStorage.setItem("mariposa_cart", JSON.stringify(cart))
                     this.getProducts()
+                },
+                remove(format_id){
+
+                    var cart = window.localStorage.getItem("mariposa_cart")
+                    cart = JSON.parse(cart)
+                    
+                    let newCart = cart.filter(cart => {
+                        return parseInt(cart.product_format_id) !== parseInt(format_id)
+                    })
+
+
+                    window.localStorage.setItem("mariposa_cart", JSON.stringify(newCart))
+                    this.getProducts()
+
                 }
+
 
 
             },
