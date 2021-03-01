@@ -32,7 +32,7 @@
                             <td class="pt-2">
                                 <div class="add_to_cart_wrapper" style="width: 60px;">
                                     <div class="quantity">
-                                        <input type="number" :id="'amount-'+product.format.id" class="input-text qty text" step="1" min="1" :max="product.format.stock" name="quantity" @change="changeAmount(product.format.id)" :value="product.amount" title="Qty" size="4" placeholder="" inputmode="numeric" style="margin-top: 10px;">
+                                        <input readonly type="number" :id="'amount-'+product.format.id" class="input-text qty text" step="1" min="1" :max="product.format.stock" name="quantity" :value="product.amount" title="Qty" size="4" placeholder="" inputmode="numeric" style="margin-top: 10px;">
                                     </div>
                         
                                 </div>
