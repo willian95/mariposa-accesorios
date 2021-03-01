@@ -371,7 +371,7 @@
 
                 },
                 checkout(){
-                    alert("hey2")
+                  
                     axios.post("{{ url('/purchase') }}", {total: this.total, bank_id: this.selectedBank, buyerName: this.buyerName, buyerLastname: this.buyerLastname, buyerPhone: this.buyerPhone, buyerEmail: this.buyerEmail, buyerAddress: this.buyerAddress, bankReference: this.bankReference, products: this.products}).then(res => {
 
                         if(res.data.success == true){
