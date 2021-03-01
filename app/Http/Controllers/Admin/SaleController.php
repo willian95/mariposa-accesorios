@@ -90,7 +90,7 @@ class SaleController extends Controller
 
     function approve(Request $request){
 
-        try{
+  
 
             $purchase = Purchase::find($request->id);
             $purchase->status = "approved";
@@ -100,9 +100,7 @@ class SaleController extends Controller
 
             return response()->json(["success" => true, "msg" => "Venta actualizada"]);
 
-        }catch(\Exception $e){
-            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
-        }
+        
 
     }
 
