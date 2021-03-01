@@ -58,11 +58,11 @@
 
                 <h4><span class="text-dark">Total:</span> Bs. @{{ showPrice(total) }}</h4>
 
-                <a v-if="totla == 0" class="btn btn-dark" style="border-radius: 0px;" href="{{ url('/checkout') }}">
+                <a v-if="totla == 0" class="btn btn-dark" style="border-radius: 0px;" href="#">
                     Pagar
                 </a>
 
-                <a v-else class="btn btn-dark" style="border-radius: 0px;" href="#">
+                <a v-else class="btn btn-dark" style="border-radius: 0px;" href="{{ url('/checkout') }}">
                     Pagar
                 </a>
             </div>
