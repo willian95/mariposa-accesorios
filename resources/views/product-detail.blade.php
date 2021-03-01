@@ -34,7 +34,7 @@
             
             <h4 class="text-dark mt-4" style="font-weight: bold;">{{ $product->name }}</h4>
 
-            <h4 class="text-dark mt-4" style="font-weight: bold;">$ @{{ number_format(dolarPrice, 0, ",", ".") }}</h4>
+            <h4 class="text-dark mt-4" style="font-weight: bold;">USD @{{ number_format(dolarPrice, 0, ",", ".") }}</h4>
             <h4 class="text-dark mt-4" style="font-weight: bold;">Bs. @{{ number_format(price, 0, ",", ".") }}</h4>
 
             {!! $product->description !!}
@@ -192,6 +192,7 @@
             mounted(){
 
                 this.price = "{{ $product->productFormats[0]->price }}" * this.dolarToday
+                this.dolarPrice = "{{ $product->productFormats[0]->price }}"
                 this.colors = JSON.parse('{!! $product->productFormats !!}')
                 this.stock = "{{ $product->productFormats[0]->stock }}"
 
