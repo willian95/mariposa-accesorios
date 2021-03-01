@@ -122,7 +122,7 @@ td .es-button-border-2:hover {
 
                       <tr>
                         <td>
-                        Hola {{ $purchase->buyer_name }} {{ $purchase->buyer_lastname }}, {{ $message }}.
+                        Hola {{ $purchase->buyer_name }} {{ $purchase->buyer_lastname }}, {{ $body }}.
                         </td>
                       </tr>
 

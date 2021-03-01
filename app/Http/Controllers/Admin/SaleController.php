@@ -90,7 +90,7 @@ class SaleController extends Controller
 
     function approve(Request $request){
 
-  
+        try{
 
             $purchase = Purchase::find($request->id);
             $purchase->status = "approved";
@@ -100,7 +100,11 @@ class SaleController extends Controller
 
             return response()->json(["success" => true, "msg" => "Venta actualizada"]);
 
-        
+        }catch(\Exception $e){
+
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
+
+        }
 
     }
 
@@ -138,7 +142,7 @@ class SaleController extends Controller
         $to_name = $purchase->buyer_name;
         $to_email = $purchase->buyer_email;
 
-        $data = ["purchase" => $purchase, "total" => $total, "dolarToday" => $dolarToday, "products" => $products, "title" => $title, "message" => $message];
+        $data = ["purchase" => $purchase, "total" => $total, "dolarToday" => $dolarToday, "products" => $products, "title" => $title, "body" => $message];
 
         \Mail::send("emails.purchaseConfirmation", $data, function($message) use ($to_name, $to_email) {
     
