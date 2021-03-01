@@ -36,254 +36,58 @@
     </div>
 
     
-    <div class="container">
-        <ul class="products columns-3 js_animated row">
+    <div>
+        <div class="container">
+            <ul class="products columns-3 js_animated row">
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product1.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
+                @foreach(App\Models\Product::with("productFormats")->where("is_highlighted", "1")->get() as $product)
+
+                    @php
                         
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-                    </div>
-        
-                </div>
-                
-            </li>
+                        $price = $product->productFormats[0]->price * App\Models\DolarToday::first()->price;
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
+                    @endphp
+
+                    <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
+                
+                        <div class="main-container">
+                
+                            <div class="product_image_wrapper">
+                
+                            
+                                <div class="product_image with_second_image second_image_loaded">
+                                    <a href="{{ url('/product-detail/'.$product->slug) }}">
+                                        <span class="product_second_image" style="background-image:url({{$product->hover_image}})"></span>
+                                        <img width="330" height="413" src="{{ $product->image }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
+                                    </a>
+                                </div>
+                
+                            </div>
+                
+                            <div class="second-container">
+                                <div class="product_info">
+                                    <a href="{{ url('/product-detail/'.$product->slug) }}" class="title">
+                                        <h2 class="woocommerce-loop-product__title">{{ $product->name }}</h2>
+                                    </a>
+                                
+                                    <span class="price">
+                                        <span class="woocommerce-Price-amount amount">
+                                            <bdi><span class="woocommerce-Price-currencySymbol">Bs.</span>{{ number_format($price, 0, ",", ".") }}</bdi>
+                                        </span>
+                                    </span>
+                                            
+                                </div>
+                
+                            </div>
+                
                         </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
                         
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
+                    </li>
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product3.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-                    </div>
-        
-                </div>
-                
-            </li>
+                @endforeach
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product4.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product1.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-        
-        </ul>
+            </ul>
+        </div>
     </div>
 
     <div class="container">
@@ -302,41 +106,21 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-lg-6" style="padding: 0;">
-                <div class="category-container">
+            @foreach(App\Models\Category::all() as $category)
 
-                    <img src="{{ url('img/category1.jpg') }}" alt="" style="width: 100%;">
-                    <h3 class="category-center-text text-light">Categoría 1</h3>
+                <div class="col-lg-6" style="padding: 0;">
+                    <a href="{{ url('/categories/products/'.$category->slug) }}">
+                    
+                        <div class="category-container">
 
+                            <img src="{{ $category->image }}" alt="" style="width: 100%;">
+                            <h3 class="category-center-text text-light">{{ $category->name }}</h3>
+
+                        </div>
+                    </a>
                 </div>
-            </div>
 
-            <div class="col-lg-6" style="padding: 0;">
-                <div class="category-container">
-
-                    <img src="{{ url('img/category2.jpg') }}" alt="" style="width: 100%;">
-                    <h3 class="category-center-text text-light">Categoría 2</h3>
-
-                </div>
-            </div>
-
-            <div class="col-lg-6" style="padding: 0;">
-                <div class="category-container">
-
-                    <img src="{{ url('img/category2.jpg') }}" alt="" style="width: 100%;">
-                    <h3 class="category-center-text text-light">Categoría 3</h3>
-
-                </div>
-            </div>
-
-            <div class="col-lg-6" style="padding: 0;">
-                <div class="category-container">
-
-                    <img src="{{ url('img/category1.jpg') }}" alt="" style="width: 100%;">
-                    <h3 class="category-center-text text-light">Categoría 4</h3>
-
-                </div>
-            </div>
+            @endforeach
             
         </div>
     </div>
@@ -357,497 +141,55 @@
     <div class="container">
         <ul class="products columns-4 js_animated row">
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="img/product1.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-                    </div>
-        
-                </div>
-                
-            </li>
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
+            @foreach(App\Models\Product::with("productFormats")->take(16)->inRandomOrder()->get() as $product)
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
+                @php
                     
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product3.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-                    </div>
-        
-                </div>
-                
-            </li>
+                    $price = $product->productFormats[0]->price * App\Models\DolarToday::first()->price;
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
+                @endphp
+
+                <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
+
+                    <div class="main-container">
+
+                        <div class="product_image_wrapper">
+
+                        
+                            <div class="product_image with_second_image second_image_loaded">
+                                <a href="{{ url('/product-detail/'.$product->slug) }}">
+                                    <span class="product_second_image" style="background-image:url({{$product->hover_image}})"></span>
+                                    <img width="330" height="413" src="{{ $product->image }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
+                                </a>
+                            </div>
+
                         </div>
-        
+
+                        <div class="second-container">
+                            <div class="product_info">
+                                <a href="{{ url('/product-detail/'.$product->slug) }}" class="title">
+                                    <h2 class="woocommerce-loop-product__title">{{ $product->name }}</h2>
+                                </a>
+                            
+                                <span class="price">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <bdi><span class="woocommerce-Price-currencySymbol">Bs.</span>{{ number_format($price, 0, ",", ".") }}</bdi>
+                                    </span>
+                                </span>
+                                        
+                            </div>
+
+                        </div>
+
+                    </div>
                     
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product4.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
+                </li>
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product1.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-                    </div>
-        
-                </div>
-                
-            </li>
+                @endforeach
 
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-            <li class="col-lg-4 product type-product post-234 status-publish first instock product_cat-junior product_cat-men product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-simple visible animation_ready animated">
-        
-                <div class="main-container">
-        
-                    <div class="product_image_wrapper">
-        
-                        <div class="product_badges_wrapper black-badge">
-                            <span class="getbowtied_new_product">New!</span>			
-                        </div>
-        
-                    
-                        <div class="product_image with_second_image second_image_loaded">
-                            <a href="{{ url('/product-detail') }}">
-                                <span class="product_second_image" style="background-image:url(https://thehanger.wp-theme.design/wp-content/uploads/7134332040_2_1_1-330x413.jpg)"></span>
-                                <img width="330" height="413" src="{{ url('img/product2.jpg') }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy">				
-                            </a>
-                        </div>
-        
-                    </div>
-        
-                    <div class="second-container">
-                        <div class="product_info">
-                            <a href="{{ url('/product-detail') }}" class="title">
-                                <h2 class="woocommerce-loop-product__title">Black Sneakers</h2>
-                            </a>
-                        
-                            <span class="price">
-                                <span class="woocommerce-Price-amount amount">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>139</bdi>
-                                </span>
-                            </span>
-                                    
-                        </div>
-        
-        
-                    </div>
-        
-                </div>
-                
-            </li>
-
-        
         </ul>
     </div>
 
 @endsection
+

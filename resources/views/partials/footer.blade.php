@@ -14,12 +14,12 @@
                             <div class="row small-up-1 medium-up-2 large-up-6">
                                 <div class="column">
                                     <aside id="woocommerce_product_search-2" class="widget woocommerce widget_product_search">
-                                        <form role="search" method="get" class="woocommerce-product-search" action="https://thehanger.wp-theme.design/">
+                                        <!--<form role="search" method="get" class="woocommerce-product-search">-->
                                             <label class="screen-reader-text" for="woocommerce-product-search-field-1">Search for:</label>
-                                            <input type="search" id="woocommerce-product-search-field-1" class="search-field" placeholder="Search products…" value="" name="s">
-                                            <button type="submit" value="Search">Search</button>
-                                            <input type="hidden" name="post_type" value="product">
-                                        </form>
+                                            <input type="search" id="woocommerce-product-search-field-1" class="search-field searchInputFooter" placeholder="Search products…">
+                                            <!--<button type="submit" value="Search">Search</button>-->
+                                            <input type="hidden" name="post_type">
+                                        <!--</form>-->
                                     </aside>
                                 </div>
                                 <div class="column">

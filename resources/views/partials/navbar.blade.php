@@ -8,7 +8,7 @@
         <div class="col-lg-5">
 
             <div class="header_search_input_wrapper" style="display: flex;">
-                <input type="text" class="header_search_input no-border-input" placeholder="Búsqueda">
+                <input type="text" class="header_search_input no-border-input searchInput" placeholder="Búsqueda" onclick="search()">
                 <i class="fas fa-search mt-3"></i>
             </div>
 
