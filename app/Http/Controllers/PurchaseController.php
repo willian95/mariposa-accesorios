@@ -31,8 +31,8 @@ class PurchaseController extends Controller
             $purchase->save();
 
             $this->storeProductPurchase($request->products, $purchase->id);
-            $this->sendEmail($purchase->id);
-            //Event::dispatch(new SendPurchaseMail($purchase->id));
+            //$this->sendEmail($purchase->id);
+            Event::dispatch(new SendPurchaseMail($purchase->id));
 
             return response()->json(["success" => true, "msg" => "Compra realizada, un administrador se contactará con usted para la confirmación del pago"]);
 
