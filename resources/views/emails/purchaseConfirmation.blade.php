@@ -100,7 +100,7 @@ td .es-button-border-2:hover {
                       <td align="center" style="padding:0;Margin:0;font-size:0px;"><img class="adapt-img" src="https://www.aidacaceresart.com/assets/img/logo-blue.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;object-fit: contain;" width="200" height="133"></td> 
                      </tr> 
                      <tr style="border-collapse:collapse;"> 
-                      <td align="center" style="padding:0;Margin:0;"><h1 style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;font-size:20px;font-style:normal;font-weight:bold;color:#0c4572;">¡Compra realizada! </h1></td> 
+                      <td align="center" style="padding:0;Margin:0;"><h1 style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;font-size:20px;font-style:normal;font-weight:bold;color:#0c4572;">{{ $title }}</h1></td> 
                      </tr> 
 
 
@@ -114,9 +114,6 @@ td .es-button-border-2:hover {
                         <td>Email: {{ $purchase->buyer_email }}</td>
                       </tr>
                       <tr>
-                        <td>Teléfono: {{ $purchase->buyer_phone }}</td>
-                      </tr>
-                      <tr>
                       <td>Dirección: {{ $purchase->buyer_address }}</td>
                       </tr>
                       <tr>
@@ -125,7 +122,7 @@ td .es-button-border-2:hover {
 
                       <tr>
                         <td>
-                        Hola Admin, este usuario ha realizado una compra.
+                        Hola {{ $purchase->buyer_name }} {{ $purchase->buyer_lastname }}, {{ $message }}.
                         </td>
                       </tr>
 
@@ -147,7 +144,7 @@ td .es-button-border-2:hover {
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center"><img src="{{ $product['productFormat']['product']['image'] }}" style="width: 60px;"></td>
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["productFormat"]["prouct"]["name"] }} {{ $product["productFormat"]["color"]["name"] }} </td>
                             <td>{{  $product["amount"] }}</td>
-                            <td style="border: 1px solid black; border-collapse:collapse; text-align:center">USD {{ number_format($product["price"], 0, ",", ".") }} / Bs. {{ number_format($product["price"] * $product["dolar_today_price"], 0, ",", ".") }}</td>
+                            <td style="border: 1px solid black; border-collapse:collapse; text-align:center">USD {{ number_format($product["price"], 0, ",", ".") }} / Bs. {{ number_format($product["price"] * $dolarToday, 0, ",", ".") }}</td>
                         </tr>
                       @endforeach
                       

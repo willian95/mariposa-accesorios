@@ -96,6 +96,8 @@ class SaleController extends Controller
             $purchase->status = "approved";
             $purchase->update();
 
+            $this->sendEmail($purchase->id, "Compra aprobada", "tenemos el agrado de anunciarte que tu compra fue aprobada");
+
             return response()->json(["success" => true, "msg" => "Venta actualizada"]);
 
         }catch(\Exception $e){
@@ -112,11 +114,40 @@ class SaleController extends Controller
             $purchase->status = "rejected";
             $purchase->update();
 
+            $this->sendEmail($purchase->id, "Compra rechazada", "lamentamos comunicarte que tu compra fue rechazada. Para más información comunicate ocn nosotros");
+
             return response()->json(["success" => true, "msg" => "Venta actualizada"]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
         }
+
+    }
+
+    function sendEmail($purchaseId, $title, $message){
+
+        $purchase = Purchase::find($purchaseId);
+        $products = ProductPurchase::where("purchase_id", $purchaseId)->with("productFormat")->get();
+        $dolarToday = $products[0]["dolar_today_price"];
+        $total = 0;
+        
+        foreach($products as $product){
+
+            $total = $total + ($product->price * $product->amount);
+
+        }
+
+        $to_name = $purchase->buyer_name;
+        $to_email = $purchase->buyer_email;
+
+        $data = ["purchase" => $purchase, "total" => $total, "dolarToday" => $dolarToday, "products" => $products, "title" => $title, "message" => $message];
+
+        \Mail::send("emails.purchaseConfirmation", $data, function($message) use ($to_name, $to_email) {
+    
+            $message->to($to_email, $to_name)->subject("¡Confirmación de compra!");
+            $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
+
+        });
 
     }
 
