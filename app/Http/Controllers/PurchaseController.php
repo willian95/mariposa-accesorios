@@ -35,7 +35,7 @@ class PurchaseController extends Controller
             $this->sendEmail($purchase->id);
             foreach(AdminMail::all() as $mail){
 
-                $this->sendAdminEmail($purchase->id, $mail);
+                $this->sendAdminEmail($purchase->id, $mail->email);
 
             }
 
